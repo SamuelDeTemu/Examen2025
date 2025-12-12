@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Examen Ética Profesional</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Cronómetro siempre visible -->
+  <div id="timer-bar" class="timer-bar hidden">
+    <span>Tiempo restante:</span>
+    <span id="timer-display">20:00</span>
+  </div>
+
+  <main class="app-container">
+    <!-- Pantalla de inicio -->
+    <section id="start-screen" class="card">
+      <h1>Examen Final de Ética Profesional</h1>
+      <p class="subtitle">Licenciatura en Educación</p>
+
+      <h2>Reglas del examen</h2>
+      <ul class="rules-list">
+        <li>El examen solo se puede realizar una vez, salvo que un docente lo desbloquee con contraseña.</li>
+        <li>Tiempo máximo: <strong>20 minutos</strong>.</li>
+        <li>El acceso del alumno está protegido con contraseña.</li>
+        <li>Para repetir el examen, es necesaria la intervención de un docente.</li>
+      </ul>
+
+      <div id="info-intentos" class="info-intentos"></div>
+
+      <!-- Acceso alumno -->
+      <div id="alumno-access" class="access-card">
+        <h3>Acceso de alumno</h3>
+        <p>Introduce la contraseña de alumno para comenzar.</p>
+        <label for="alumno-password">Contraseña de alumno</label>
+        <input
+          type="password"
+          id="alumno-password"
+          placeholder="Contraseña"
+          autocomplete="off"
+        />
+        <button id="btn-alumno-login" class="btn primary">Ingresar</button>
+        <p id="alumno-error" class="error-message"></p>
+      </div>
+
+      <!-- Acceso docente cuando ya fue contestado -->
+      <div id="docente-access" class="access-card hidden">
+        <h3>Examen bloqueado</h3>
+        <p>Este examen ya fue contestado al menos una vez en este navegador.</p>
+        <p>Para permitir un nuevo intento, introduce la contraseña de docente.</p>
+
+        <label for="docente-password-start">Contraseña de docente</label>
+        <input
+          type="password"
+          id="docente-password-start"
+          placeholder="Contraseña docente"
+          autocomplete="off"
+        />
+        <button id="btn-docente-login-start" class="btn secondary">
+          Desbloquear para nuevo intento
+        </button>
+        <p id="docente-start-error" class="error-message"></p>
+      </div>
+    </section>
+
+    <!-- Pantalla de nombre del alumno -->
+    <section id="name-screen" class="card hidden">
+      <h2>Antes de comenzar...</h2>
+      <p>Por favor, escribe tu nombre completo.</p>
+
+      <label for="student-name">Nombre del alumno</label>
+      <input
+        type="text"
+        id="student-name"
+        placeholder="Escribe tu nombre"
+        autocomplete="off"
+      />
+      <button id="btn-start-exam" class="btn primary">Iniciar examen</button>
+      <p id="name-error" class="error-message"></p>
+    </section>
+
+    <!-- Pantalla del examen -->
+    <section id="exam-screen" class="card hidden">
+      <header class="exam-header">
+        <h2>Examen de Ética Profesional</h2>
+        <p id="student-name-label" class="student-name-label"></p>
+        <p id="question-counter" class="question-counter"></p>
+      </header>
+
+      <div id="question-container" class="question-container">
+        <h3 id="question-text"></h3>
+        <form id="options-form" class="options-list"></form>
+        <p id="question-feedback" class="question-feedback"></p>
+      </div>
+
+      <div class="exam-controls">
+        <button id="btn-submit-answer" class="btn primary">
+          Responder
+        </button>
+        <button id="btn-next-question" class="btn ghost hidden">
+          Siguiente pregunta
+        </button>
+      </div>
+    </section>
+
+    <!-- Pantalla de resultados -->
+    <section id="result-screen" class="card hidden">
+      <h2>Resultados del examen</h2>
+      <p id="result-student-name" class="result-name"></p>
+      <p id="result-score" class="result-score"></p>
+      <p id="result-message" class="result-message"></p>
+
+      <h3>Resumen de respuestas</h3>
+      <ul id="summary-list" class="summary-list"></ul>
+
+      <div class="divider"></div>
+
+      <div class="access-card">
+        <h3>Reaplicar el examen</h3>
+        <p>
+          Para permitir que otro alumno realice el examen, un docente debe
+          introducir su contraseña.
+        </p>
+        <label for="docente-password-final">Contraseña de docente</label>
+        <input
+          type="password"
+          id="docente-password-final"
+          placeholder="Contraseña docente"
+          autocomplete="off"
+        />
+        <button id="btn-docente-unlock-final" class="btn secondary">
+          Desbloquear para nuevo intento
+        </button>
+        <p id="docente-final-error" class="error-message"></p>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
